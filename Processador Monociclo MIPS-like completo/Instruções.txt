@@ -1,0 +1,55 @@
+v2.0 raw
+
+#Considere que todos os beqs estão com valores intermediários
+#devo apagar posteriormente
+
+61000000 	#int i = 0
+62000001 	#int p = 1
+63000004 	#limite superior = 4
+
+#for_p_i:
+30130017	#BEQ de i se reg1 = reg3
+64000000 	# J = reg 4 = 0
+
+#for_p_j:
+30430013	#BEQ de j se reg4 = reg3
+65000000 	# k = reg 5 = 0
+
+#for_p_k:
+3053000f	#BEQ de k se reg5 = reg3
+52020001	#Você é só um medidor que define a quantidade de interações.
+
+4d010002	#I recebe um sll de 2
+4e050002	#K recebe um sll de 2
+
+06d40000	#Reg6 = sll(2,i) +j
+07d50000 	#Reg7 = sll(2,i)+k
+08e40000	#reg8 = sll (2,k)+j
+
+6c000000 	#regc = 0
+
+79c70000	#A tentantiva aqui era expressar ->reg 9 = memMat0[0+reg7]
+7ac80010	#RegA = memMat1[0+reg8]
+7bc60020	#RegB = MemMatR[0+reg6]
+
+299a0000	#Valor de Reg9 = Reg9*RegA
+099b0000	#Valor de Reg9 = Reg9+RegB
+
+80960020	#Escreva o valor de 9 em MatResult[i][j]
+
+55050001	#Reg 5 == k = k++;
+90000007 	#Jump para for_p_k
+
+#fim_p_k:
+54040001	#reg 4 == j = j++;
+90000005	#Jump para for_p_j
+
+#fim_p_j:
+51010001	#reg 1 == i = i++;
+90000003	#Jump para for_p_i:
+
+#fim_p_i:
+
+#Nesse trecho, eu consegui um resultado satisfatório com as instruções do for...
+#Nas intruções posteriores que eu adicionar, só o que muda nos fors desse código 
+#é o valor das entradas do BEQ que eu vou precisar recalcular.

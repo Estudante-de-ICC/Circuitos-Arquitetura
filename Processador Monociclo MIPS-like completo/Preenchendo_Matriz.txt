@@ -1,0 +1,18 @@
+v2.0 raw
+61000000 #li 1, 0 Índice de I
+62000001 #li 2, 1 Valor incrementado para adicionar
+63000004 #li 3, 4Limites para I e J
+
+3013000a #beq 1,3,(fim_de_i) (Início da função for_de_i)
+64000000 #li 4,0 valor de j
+
+30430006 #beq 4, 3 (fim_de_j)(Início da função for_de_j)
+80250000 #save o valor de 2 em [Array1 + reg5]
+80250010 #save o valor de 2 em [Array2 + reg5]
+52020001 #reg2 = reg2 + 1
+54040001 #reg4 = reg4 + 1
+55050001 #reg5 = reg5 + 1
+90000005 #jump for_de_j
+
+51010001 #reg1 = reg1 + 1
+90000003 #jump for_de_i Funcionou, agora a multiplicação de matrizes...
